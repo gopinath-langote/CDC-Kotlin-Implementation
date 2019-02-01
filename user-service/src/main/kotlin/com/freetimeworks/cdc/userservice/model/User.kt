@@ -1,9 +1,7 @@
 package com.freetimeworks.cdc.userservice.model
 
-import java.util.*
-
 data class User(
-        val id: UUID,
+        val id: Int,
         val name: String,
         val email: String
 )

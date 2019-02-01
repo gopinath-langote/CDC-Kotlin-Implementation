@@ -50,7 +50,7 @@ class UserServiceClientIntegrationTest {
 
     @Test
     fun `should get user by id`() {
-        val userId = UUID.randomUUID()
+        val userId = 1
         val name = "gopinath"
         val email = "gopinath@gmail.com"
 

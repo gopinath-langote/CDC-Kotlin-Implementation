@@ -14,7 +14,6 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
 import org.springframework.web.client.RestTemplate
-import java.util.*
 
 
 @ExtendWith(PactConsumerTestExt::class)
@@ -25,7 +24,7 @@ class UserServiceClientContractTest {
         const val USER_SERVICE_PORT = 1081
     }
 
-    private val userId = UUID.randomUUID()
+    private val userId = 1
     private val name = "gopinath"
     private val email = "gopinath@gmail.com"
 
@@ -54,13 +53,13 @@ class UserServiceClientContractTest {
     fun createPact(builder: PactDslWithProvider): RequestResponsePact {
 
         val body = PactDslJsonBody()
-                .stringType("id", userId.toString())
+                .integerType("id", userId)
                 .stringType("name", name)
                 .stringType("email", email)
 
         val headers = mapOf("Content-Type" to "application/json;charset=UTF-8")
         return builder.uponReceiving("a request to get an user")
-                .matchPath("/users/.*")
+                .matchPath("/users/$userId")
                 .method("GET")
                 .willRespondWith()
                 .headers(headers)

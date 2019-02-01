@@ -11,7 +11,7 @@ class UserServiceClient(
         private val userServicePort: Int,
         private val restTemplate: RestTemplate
 ) {
-    fun getUser(userId: UUID): User {
+    fun getUser(userId: Int): User {
         val url = "http://$userServiceHost:$userServicePort/users/$userId"
         val responseEntity = restTemplate.getForEntity(url, User::class.java)
         return Optional.ofNullable(responseEntity.body)
