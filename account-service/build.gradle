@@ -55,7 +55,17 @@ compileTestKotlin {
     }
 }
 
+task deletePactFiles(type: Delete) {
+
+    def dir = "$rootDir/Pacts/"
+    delete fileTree(dir) {
+        include '**/*.json'
+    }
+}
+
 test {
+    dependsOn 'deletePactFiles'
+
     delete("$rootDir/Pacts/*.json")
 
     useJUnitPlatform()
