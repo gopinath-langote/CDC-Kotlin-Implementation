@@ -56,5 +56,9 @@ compileTestKotlin {
 }
 
 test {
+    delete("$rootDir/Pacts/*.json")
+
     useJUnitPlatform()
+
+    systemProperties['pact.rootDir'] = "$rootDir/Pacts/"
 }
